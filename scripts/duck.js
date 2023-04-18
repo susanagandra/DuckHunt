@@ -1,82 +1,67 @@
-window.onload = function() {
-    const body = document.body;
-    const tID = 0;
-    
-    function flighToRight() {
-        const  speed = 550; 
-        tID = setInterval ( () => {
-    
-           if( document.getElementById("duck").getAttribute("class")==="duck flapRight"){
-               document.getElementById("duck").setAttribute("class", "duck right")
-           }
-           else{
-               document.getElementById("duck").setAttribute("class", "duck flapRight")
-           } 
-        }
-        , speed ); 
-    }
-  
 
+window.onload = () => {
 
-   
     function createDuck() {
 
-
         const duck = document.createElement('div');
-        duck.id = "duck";
+        document.body.append(duck)
 
-        setInterval(function() {
-            
-            const randomNumber = Math.floor(Math.random() * 2) + 1;
-          
-           
-            console.log(randomNumber);
-            switch(randomNumber) {
-              case 1:
-                duck.className = 'duck flapRight';
-                console.log("flap right");
-                flighToRight();
-              case 2:
-                duck.className = 'duck flapLeft';
-                flighToLeft();
-                console.log("flap left");
-              case 3:
-                duck.className = 'duck flapTopRight';
-                flighToTopRight();
-                console.log("flap top right");
-              case 4:
-                duck.className = 'duck flapTopLeft';
-                flighToTopLeft
-                console.log("flap top left");
-                break;
-              default:
-                console.log("Valor inválido gerado.");
-            }
-          }, 7000);
-
+        function flightRight(){
+            setInterval(() => {
+                duck.classList.add("duck", "right");
+                duck.classList.toggle('flapRight');
+              }, 700);
         
-        document.body.appendChild(duck);
-
-        function moveDuck() {
-
-            let top = Math.random() * window.innerWidth;
-            let left = Math.random() * window.innerHeight;
-
-            duck.style.top = top + 'px';
-            duck.style.left = left + 'px';
-
-            function addShot() {
-                duck.classList.add('shot');
-                setTimeout(function() { duck.remove(); checkForWinner() }, 1000)
-            }
-
-            duck.addEventListener('click', addShot);
         }
-        moveDuck()
-        let mover = setInterval(moveDuck, 200);
-        return duck;
+
+        function flightLeft(){
+            setInterval(() => {
+                duck.classList.add("duck", "left");
+                duck.classList.toggle('flapLeft');
+              }, 700);
+        
+        }
+
+        function flightTopRight(){
+            setInterval(() => {
+                duck.classList.add("duck", "topRight");
+                duck.classList.toggle('flapTopRight');
+              }, 700);
+        
+        }
+
+        let medialPosition = Math.random() * window.innerHeight;
+        let lateralPosition = Math.random() * window.innerWidth;
+        duck.style.top = `${medialPosition}px`;
+        duck.style.left = `${lateralPosition}px`;
+
+        setInterval(() => {
+            const newMedialPosition = Math.random() * window.innerHeight;
+            const newLateralPosition = Math.random() * window.innerWidth;
+            // add and remove the 'right' class to the duck based on the direction the duck is flying, thus shifting the direction the duck is facing
+            if (lateralPosition < newLateralPosition) {
+                flightLeft();
+            } else if (lateralPosition > newLateralPosition) {
+                flightRight
+            } else if (medialPosition < newMedialPosition) {
+                flightTopRight
+            } 
+            // update position of duck to new coordinates
+            duck.style.top = `${newMedialPosition}px`;
+            duck.style.left = `${newLateralPosition}px`;
+          }, 500);
+
+       
+       
+
+       
+
+      
+
+
+
     }
-    
-    createDuck()
-    
+
+createDuck();
+
 }
