@@ -1,0 +1,54 @@
+.duck {
+  position: absolute;
+    width: 75px;
+	height: 93px;
+    top: 100px;
+    left: 100px;
+    bottom: 5px;
+    background-image: url('/images/duckhunt.png');
+    background-repeat: no-repeat;
+    transition: left 2.0s, top 2.0s, right 2.0s, bottom 2.0s;
+    transition-timing-function: linear;
+    z-index: 4;
+  }
+  
+  .topRight {
+    background-position: -210px -180px;
+  }
+  
+  .topLeft {
+    background-position: -117px -177px;
+  }
+
+  .flapTopRight {
+    background-position: -324px -183px;
+    width: 81px;
+  }
+  
+  .flapTopLeft {
+    background-position: -435px -183px;
+    width: 81px;
+  }
+  
+  .left {
+    background-position: -543px -204px;
+    width: 102px;
+    height: 72px;
+  }
+
+  .right {
+    background-position: -681px -204px;
+    width: 102px;
+    height: 72px;
+  }
+  .flapLeft {
+    background-position: -957px -213px;
+    width: 102px;
+    height: 60px;
+  }
+
+  .flapRight {
+    background-position: -819px -213px;
+    width: 102px;
+    height: 60px;
+  }
