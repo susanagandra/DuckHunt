@@ -47,8 +47,8 @@ var shots = 0;
 
         setInterval(() => {
 
-            let medialPosition = Math.random() * window.innerHeight;
-            let lateralPosition = Math.random() * window.innerWidth;
+            let medialPosition = Math.random() * window.innerHeight + 10;
+            let lateralPosition = Math.random() * window.innerWidth + 10;
             duck.style.top = `${medialPosition}px`;
             duck.style.left = `${lateralPosition}px`;
 
@@ -90,10 +90,14 @@ var shots = 0;
           
             setTimeout(() => {
               duck.parentNode.removeChild(duck);
+             
               addScore();
               countDeadDucks();
               countShots();
+         
+
               checkWinner();
+         
             
 
             }, 500);
@@ -132,7 +136,6 @@ var shots = 0;
         liveDuck3.src = "images/duckLive.png"
     }
 
-
     
     let score = document.getElementById("score");
     function addScore(){
@@ -143,20 +146,16 @@ var shots = 0;
      function checkWinner() {
         
         const ducks = document.querySelectorAll(".duck");
-
-        console.log(ducks, ducks.length);
     
         if (ducks.length === 0) {
             startGame = false;
-            addScore();
-            countDeadDucks();
-            countShots();
           alert('You Win! Press OK to play again.');
             reseatDeadDucks();
             reseatShots();
             scoreValue = 0;
             score.textContent = scoreValue;
           for (let i = 0; i < (Math.random() * 2) + 1; i++) {
+            console.log((Math.random() * 2) + 1)
             console.log("começando novo jogo do winner")
            createDuck(); 
           }
@@ -170,7 +169,7 @@ var shots = 0;
         setTimeout(() => {
             createDuck();
         
-        }, 6500);
+        }, 5000);
       } 
     }
 
