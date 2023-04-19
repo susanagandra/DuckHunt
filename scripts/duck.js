@@ -92,14 +92,6 @@ window.onload = () => {
          
          
           //kill duck, calculate shots and score
-         
-        
-          
-          
-          
-
-          
-          
           duck.addEventListener('click', (event) => {
             event.target.classList.add("shot");
             
@@ -133,7 +125,6 @@ window.onload = () => {
 
     var scoreValue = 0;
     let score = document.getElementById("score");
-
     function addScore(){
         scoreValue += 100;
         score.textContent = scoreValue;

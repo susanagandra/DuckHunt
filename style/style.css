@@ -1,6 +1,7 @@
 body {
   margin: 0;
   padding: 0;
+  cursor: url('/images/crosshair.png') 32 32, crosshair;
 }
 
 .container {
@@ -100,4 +101,6 @@ body {
 	height: 40px;
   z-index: 8;
 }
+
+
 
