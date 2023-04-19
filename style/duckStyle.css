@@ -54,3 +54,8 @@
     width: 102px;
     height: 60px;
   }
+
+  .shot {
+    background-position: center;
+    background-image: url("/images/shot.png");
+  }

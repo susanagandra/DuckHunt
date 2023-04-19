@@ -91,6 +91,16 @@ window.onload = () => {
 
           }, 2000);
 
+          duck.addEventListener('click', (event) => {
+            event.target.classList.add("shot");
+            setTimeout(() => {
+              duck.parentNode.removeChild(duck);
+              checkForWinner();
+            }, 500);
+          });
+      
+          return duck;
+
        
        
 
