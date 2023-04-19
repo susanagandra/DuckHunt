@@ -5,12 +5,13 @@ window.onload = () => {
 
         const duck = document.createElement('div');
         document.body.append(duck)
+        duck.id = "duck"
 
         function flightRight(){
             setInterval(() => {
                 duck.classList.add("duck", "right");
                 duck.classList.toggle('flapRight');
-              }, 700);
+              }, 400);
         
         }
 
@@ -18,7 +19,7 @@ window.onload = () => {
             setInterval(() => {
                 duck.classList.add("duck", "left");
                 duck.classList.toggle('flapLeft');
-              }, 700);
+              }, 400);
         
         }
 
@@ -26,30 +27,69 @@ window.onload = () => {
             setInterval(() => {
                 duck.classList.add("duck", "topRight");
                 duck.classList.toggle('flapTopRight');
-              }, 700);
+              }, 400);
         
         }
 
-        let medialPosition = Math.random() * window.innerHeight;
-        let lateralPosition = Math.random() * window.innerWidth;
-        duck.style.top = `${medialPosition}px`;
-        duck.style.left = `${lateralPosition}px`;
+        function flightTopLeft(){
+            setInterval(() => {
+                duck.classList.add("duck", "topLeftt");
+                duck.classList.toggle('flapTopLeft');
+              }, 400);
+        
+        }
+
+      
+    
 
         setInterval(() => {
+
+            let medialPosition = Math.random() * window.innerHeight;
+            let lateralPosition = Math.random() * window.innerWidth;
+            duck.style.top = `${medialPosition}px`;
+            duck.style.left = `${lateralPosition}px`;
+
             const newMedialPosition = Math.random() * window.innerHeight;
             const newLateralPosition = Math.random() * window.innerWidth;
-            // add and remove the 'right' class to the duck based on the direction the duck is flying, thus shifting the direction the duck is facing
-            if (lateralPosition < newLateralPosition) {
-                flightLeft();
-            } else if (lateralPosition > newLateralPosition) {
-                flightRight
-            } else if (medialPosition < newMedialPosition) {
-                flightTopRight
-            } 
+
+
+            if (lateralPosition < newLateralPosition && medialPosition < newMedialPosition) {
+                flightTopLeft();
+                lateralPosition = newLateralPosition;
+                medialPosition = newMedialPosition
+                document.getElementById("duck").className = "";
+            } else {
+                document.getElementById("duck").className = "";
+             }   
+
+            if (lateralPosition > newLateralPosition && medialPosition == newMedialPosition) {
+                flightRight();
+                lateralPosition = newLateralPosition;
+                medialPosition = newMedialPosition
+                document.getElementById("duck").className = "";
+            } else {
+                document.getElementById("duck").className = "";
+
+            }
+            
+            if (lateralPosition < newLateralPosition && medialPosition > newMedialPosition) {
+                flightTopRight();
+                lateralPosition = newLateralPosition;
+                medialPosition = newMedialPosition;
+                document.getElementById("duck").className = "";
+            } else {
+                document.getElementById("duck").className = "";
+            }
+
+            document.getElementById("duck").className = "";
+          
             // update position of duck to new coordinates
             duck.style.top = `${newMedialPosition}px`;
             duck.style.left = `${newLateralPosition}px`;
-          }, 500);
+
+            
+
+          }, 2000);
 
        
        
