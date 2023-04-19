@@ -87,18 +87,22 @@ window.onload = () => {
             duck.style.top = `${newMedialPosition}px`;
             duck.style.left = `${newLateralPosition}px`;
 
-            
-
           }, 2000);
 
+          //kill duck, calculate shots and score
           let shots = 0;
+          let score = document.getElementById("score");
+          let scoreValue = 0
           duck.addEventListener('click', (event) => {
             event.target.classList.add("shot");
-            shots += 1
+            shots += 1;
+            scoreValue += 100;
+            score.textContent = scoreValue;
             setTimeout(() => {
               duck.parentNode.removeChild(duck);
               document.getElementById("bullet"+shots).remove();
               checkForWinner();
+
             }, 500);
           });
       
