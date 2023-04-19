@@ -1,81 +1,143 @@
-window.onload = function() {
-    const body = document.body;
-    const tID = 0;
+
+window.onload = () => {
+
+  function createDuck() {
+
+      const duck = document.createElement('div');
+      document.body.append(duck)
+      duck.id = "duck"
+
+      function flightRight(){
+          setInterval(() => {
+              duck.classList.add("duck", "right");
+              duck.classList.toggle('flapRight');
+            }, 400);
+      
+      }
+
+      function flightLeft(){
+          setInterval(() => {
+              duck.classList.add("duck", "left");
+              duck.classList.toggle('flapLeft');
+            }, 400);
+      
+      }
+
+      function flightTopRight(){
+          setInterval(() => {
+              duck.classList.add("duck", "topRight");
+              duck.classList.toggle('flapTopRight');
+            }, 400);
+      
+      }
+
+      function flightTopLeft(){
+          setInterval(() => {
+              duck.classList.add("duck", "topLeftt");
+              duck.classList.toggle('flapTopLeft');
+            }, 400);
+      
+      }
+
     
-    function flighToRight() {
-        const  speed = 550; 
-        tID = setInterval ( () => {
-    
-           if( document.getElementById("duck").getAttribute("class")==="duck flapRight"){
-               document.getElementById("duck").setAttribute("class", "duck right")
-           }
-           else{
-               document.getElementById("duck").setAttribute("class", "duck flapRight")
-           } 
-        }
-        , speed ); 
-    }
   
 
-   
-    function createDuck() {
+      setInterval(() => {
+
+          let medialPosition = Math.random() * window.innerHeight;
+          let lateralPosition = Math.random() * window.innerWidth;
+          duck.style.top = `${medialPosition}px`;
+          duck.style.left = `${lateralPosition}px`;
+
+          const newMedialPosition = Math.random() * window.innerHeight;
+          const newLateralPosition = Math.random() * window.innerWidth;
 
 
-        const duck = document.createElement('div');
-        duck.id = "duck";
+          if (lateralPosition < newLateralPosition && medialPosition < newMedialPosition) {
+              flightTopLeft();
+              lateralPosition = newLateralPosition;
+              medialPosition = newMedialPosition
+              document.getElementById("duck").className = "";
+          } else {
+              document.getElementById("duck").className = "";
+           }   
 
-        setInterval(function() {
-            
-            const randomNumber = Math.floor(Math.random() * 2) + 1;
+          if (lateralPosition > newLateralPosition && medialPosition == newMedialPosition) {
+              flightRight();
+              lateralPosition = newLateralPosition;
+              medialPosition = newMedialPosition
+              document.getElementById("duck").className = "";
+          } else {
+              document.getElementById("duck").className = "";
+
+          }
           
-           
-            console.log(randomNumber);
-            switch(randomNumber) {
-              case 1:
-                duck.className = 'duck flapRight';
-                console.log("flap right");
-                flighToRight();
-              case 2:
-                duck.className = 'duck flapLeft';
-                flighToLeft();
-                console.log("flap left");
-              case 3:
-                duck.className = 'duck flapTopRight';
-                flighToTopRight();
-                console.log("flap top right");
-              case 4:
-                duck.className = 'duck flapTopLeft';
-                flighToTopLeft
-                console.log("flap top left");
-                break;
-              default:
-                console.log("Valor inválido gerado.");
-            }
-          }, 7000);
+          if (lateralPosition < newLateralPosition && medialPosition > newMedialPosition) {
+              flightTopRight();
+              lateralPosition = newLateralPosition;
+              medialPosition = newMedialPosition;
+              document.getElementById("duck").className = "";
+          } else {
+              document.getElementById("duck").className = "";
+          }
 
+          document.getElementById("duck").className = "";
         
-        document.body.appendChild(duck);
+          // update position of duck to new coordinates
+          duck.style.top = `${newMedialPosition}px`;
+          duck.style.left = `${newLateralPosition}px`;
 
-        function moveDuck() {
+        }, 2000);
 
-            let top = Math.random() * window.innerWidth;
-            let left = Math.random() * window.innerHeight;
+        //kill duck, calculate shots and score
+        let shots = 0;
+        let score = document.getElementById("score");
+        let scoreValue = 0
+        let deadDucks = 0
+        
+        duck.addEventListener('click', (event) => {
+          event.target.classList.add("shot");
+          shots += 1;
+          scoreValue += 100;
+          score.textContent = scoreValue;
+          deadDucks += 1;
+          
+          setTimeout(() => {
+            duck.parentNode.removeChild(duck);
+            document.getElementById("bullet"+shots).remove();
+            let duckTodead = document.getElementById("liveDuck"+deadDucks)
+            duckTodead.src = "images/duckDead.png"
+            checkWinner();
 
-            duck.style.top = top + 'px';
-            duck.style.left = left + 'px';
-
-            function addShot() {
-                duck.classList.add('shot');
-                setTimeout(function() { duck.remove(); checkForWinner() }, 1000)
-            }
-
-            duck.addEventListener('click', addShot);
-        }
-        moveDuck()
-        let mover = setInterval(moveDuck, 200);
+          }, 500);
+        });
+    
         return duck;
+
+  }
+
+  /* function checkWinner() {
+      const ducks = document.querySelectorAll('.duck');
+  
+      console.log(ducks, ducks.length);
+  
+      if (ducks.length === 0) {
+        alert('You Win! Press OK to play again.');
+        for (let i = 0; i < (Math.random() * 7) + 3; i++) {
+         createDuck(); 
+        }
+      }
     }
+
+    //start game with a random number of ducks
+  for (let i = 0; i < (Math.random() * 7) + 3; i++) {
+      setTimeout(() => {
+        createDuck();
+      }, 6500);
+    } */
+
+    createDuck();
     
-    createDuck()
-    
+
+
 }
