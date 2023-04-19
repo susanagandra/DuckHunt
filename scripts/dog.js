@@ -6,48 +6,30 @@ const createDog = () => {
 
 createDog();
 
-const moveDogToRight = () => {
-  const speed = 100; 
-
-  tID = setInterval(() => {
-    document.getElementById("dog").setAttribute("class");
-    document.getElementById("dog").style.backgroundImage = `url("/images/duckhunt.png")`;
-    currentImageIndex = (currentImageIndex + 1) % images.length;
-  }, speed); 
-}
-
-
-const dogEl = document.getElementById("dog");
-let dogPosX = 10;
-let dogPosY = 500;
-let dogSpeedX = 2;
+const dogElement = document.getElementById("dog");
+let dogPosX = 0;
+let dogPosY = 68;
+let dogSpeedX = 0.2;
 let dogSpeedY = 0;
-let dogDirection = "right";
 
 const updateDogPosition = () => {
+
   dogPosX += dogSpeedX;
 
-  if (dogPosX >= window.innerWidth - dogEl.offsetWidth) {
-    dogDirection = "left";
-    dogEl.classList.add("flip");
-    dogSpeedX = -dogSpeedX;
-  } else if (dogPosX <= 0) {
-    dogDirection = "right";
-    dogEl.classList.remove("flip");
-    dogSpeedX = -dogSpeedX;
-  }
-  
-  dogPosY += dogSpeedY;
+  if (dogPosX > 10) {
+    dogElement.style.backgroundPosition = "-24px -30px";
+    dogElement.style.backgroundPosition = "-207px -30px";
+    dogElement.style.backgroundPosition = "-387px -24px";
+    dogElement.style.backgroundPosition = "-207px -30px";
+  };
 
-  if (dogPosY >= 400) {
-    dogSpeedY = -dogSpeedY;
-  } else if (dogPosY <= 200) {
-    dogSpeedY = -dogSpeedY;
-  }
+  if (dogPosX >= 40) {
+    dogElement.style.backgroundPosition = "-747px -6px";
+    dogSpeedX = 0;
+  };
   
-  dogEl.style.left = dogPosX + "px";
-  dogEl.style.top = dogPosY + "px";
+  dogElement.style.left = dogPosX + "%";
+  dogElement.style.top = dogPosY + "%";
 }
 
 setInterval(updateDogPosition, 10);
-moveDogToRight();

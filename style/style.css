@@ -45,8 +45,6 @@ body {
   z-index: 4;
 }
 
-
-
 .score {
   position: absolute;
   top: 20px;
@@ -74,7 +72,6 @@ body {
 	height: 40px;
   z-index: 8;
 }
-
 
 #bullet3 {
   position: absolute;
