@@ -89,54 +89,80 @@ window.onload = () => {
 
           }, 2000);
 
+         
+         
           //kill duck, calculate shots and score
-          let shots = 0;
-          let score = document.getElementById("score");
-          let scoreValue = 0
-          let deadDucks = 0
+         
+        
+          
+          
+          
+
+          
           
           duck.addEventListener('click', (event) => {
             event.target.classList.add("shot");
-            shots += 1;
-            scoreValue += 100;
-            score.textContent = scoreValue;
-            deadDucks += 1;
             
+          
             setTimeout(() => {
               duck.parentNode.removeChild(duck);
-              document.getElementById("bullet"+shots).remove();
-              let duckTodead = document.getElementById("liveDuck"+deadDucks)
-              duckTodead.src = "images/duckDead.png"
+              addScore();
+              countDeadDucks();
+              countShots();
               checkWinner();
 
             }, 500);
           });
-      
           return duck;
 
     }
 
-    /* function checkWinner() {
-        const ducks = document.querySelectorAll('.duck');
+    var shots = 0;
+    function countShots(){
+        shots += 1
+        document.getElementById("bullet"+shots).remove();
+    }
+
+    var deadDucks = 0;
+    function countDeadDucks(){
+        deadDucks += 1;
+        let duckTodead = document.getElementById("liveDuck"+deadDucks)
+        duckTodead.src = "images/duckDead.png"
+    }
+
+
+    var scoreValue = 0;
+    let score = document.getElementById("score");
+
+    function addScore(){
+        scoreValue += 100;
+        score.textContent = scoreValue;
+    }
     
+
+     function checkWinner() {
+        
+        const ducks = document.querySelectorAll(".duck");
+
         console.log(ducks, ducks.length);
     
         if (ducks.length === 0) {
           alert('You Win! Press OK to play again.');
-          for (let i = 0; i < (Math.random() * 7) + 3; i++) {
+          for (let i = 0; i < (Math.random() * 2) + 1; i++) {
            createDuck(); 
           }
         }
       }
 
       //start game with a random number of ducks
-    for (let i = 0; i < (Math.random() * 7) + 3; i++) {
+    for (let i = 0; i < (Math.random() * 2) + 1; i++) {
         setTimeout(() => {
           createDuck();
+        
         }, 6500);
-      } */
+      } 
 
-      createDuck();
+      //createDuck();
       
 
 
