@@ -94,18 +94,20 @@ window.onload = () => {
           let score = document.getElementById("score");
           let scoreValue = 0
           let deadDucks = 0
+          
           duck.addEventListener('click', (event) => {
             event.target.classList.add("shot");
             shots += 1;
             scoreValue += 100;
             score.textContent = scoreValue;
             deadDucks += 1;
+            
             setTimeout(() => {
               duck.parentNode.removeChild(duck);
               document.getElementById("bullet"+shots).remove();
               let duckTodead = document.getElementById("liveDuck"+deadDucks)
               duckTodead.src = "images/duckDead.png"
-              checkForWinner();
+              checkWinner();
 
             }, 500);
           });
@@ -114,7 +116,7 @@ window.onload = () => {
 
     }
 
-    /*function checkForWinner() {
+    /* function checkWinner() {
         const ducks = document.querySelectorAll('.duck');
     
         console.log(ducks, ducks.length);
@@ -125,9 +127,17 @@ window.onload = () => {
            createDuck(); 
           }
         }
-    
-      }*/
+      }
+
+      //start game with a random number of ducks
+    for (let i = 0; i < (Math.random() * 7) + 3; i++) {
+        setTimeout(() => {
+          createDuck();
+        }, 6500);
+      } */
 
       createDuck();
+      
+
 
 }
