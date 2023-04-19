@@ -91,27 +91,35 @@ window.onload = () => {
 
           }, 2000);
 
+          let shots = 0;
           duck.addEventListener('click', (event) => {
             event.target.classList.add("shot");
+            shots += 1
             setTimeout(() => {
               duck.parentNode.removeChild(duck);
+              document.getElementById("bullet"+shots).remove();
               checkForWinner();
             }, 500);
           });
       
           return duck;
 
-       
-       
-
-       
-
-      
-
-
-
     }
 
-createDuck();
+    /*function checkForWinner() {
+        const ducks = document.querySelectorAll('.duck');
+    
+        console.log(ducks, ducks.length);
+    
+        if (ducks.length === 0) {
+          alert('You Win! Press OK to play again.');
+          for (let i = 0; i < (Math.random() * 7) + 3; i++) {
+           createDuck(); 
+          }
+        }
+    
+      }*/
+
+      createDuck();
 
 }
