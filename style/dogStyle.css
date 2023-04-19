@@ -1,0 +1,41 @@
+#dog {
+    display: flex;
+    flex-wrap: wrap;
+    position: absolute;
+    width: 180px;
+    height: 150px;
+    background-image: url('/images/duckhunt.png');
+    transition-timing-function: linear;
+    animation-duration: 3ms;
+    z-index: 10;
+  }
+  
+  .dogMove {
+    background-position: 0px 0px;
+    bottom: 8%;
+  }
+  
+  .dogMoveOne {
+    background-position: -55px 0px;
+    bottom: 8%;
+  }
+  
+  .dogMoveTwo {
+    background-position: -110px 0px;
+    bottom: 8%;
+  }
+  
+  .dogMoveThree {
+    background-position: -165px 0px;
+    bottom: 8%;
+  }
+  
+  .dogMoveFour {
+    background-position: -220px 0px;
+    bottom: 8%;
+  }
+  
+  .dogMoveFive {
+    background-position: -275px 0px;
+  }
+  

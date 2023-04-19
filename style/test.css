@@ -1,0 +1,99 @@
+#dog {
+    position: absolute;
+    width: 55px;
+    height: 40px;
+    bottom: 10%;
+    background-image: url('/images/DuckHuntOriginalSheet.png');
+    background-repeat: no-repeat;
+    transition: left 2.0s, top 2.0s, right 2.0s, bottom 2.0s;
+    transition-timing-function: linear;
+    animation-duration: 3ms;
+    z-index: 10;
+  }
+  
+  .dogMove {
+    background-position: 0px 0px;
+  }
+  
+  .dogMoveOne {
+    background-position: -55px 0px;
+  }
+  
+  .dogMoveTwo {
+    background-position: -110px 0px;
+  }
+  
+  .dogMoveThree {
+    background-position: -165px 0px;
+  }
+  
+  .dogMoveFour {
+    background-position: -220px 0px;
+  }
+  
+  .dogMoveFive {
+    background-position: -275px 0px;
+  }
+
+
+  .sprite {
+	background: url('imgs/DuckHuntOriginalSheet.png') no-repeat -8px -2px;
+	width: 376px;
+	height: 50px;
+    z-index: 10;
+}
+
+
+.dog {
+    position: absolute;
+    bottom: 10%;
+    left: 8%;
+    background-image: url('/images/DuckHuntOriginalSheet.png');
+    background-repeat: no-repeat;
+    transition: left 2s, top 2s, right 2s, bottom 2s;
+    transition-timing-function: linear;
+    animation-duration: 0.3s;
+    z-index: 10;
+}
+    
+.dog #dogMoveOne {
+    background: -8px -10px;
+	width: 55px;
+	height: 40px;
+}
+    
+.dogMoveTwo {
+    background: -69px -10px;
+	width: 53px;
+	height: 40px;
+}
+  
+.dogMoveThree {
+    background: -129px -8px;
+	width: 51px;
+	height: 43px;
+}
+    
+.dogMoveFour {
+    background: -189px -6px;
+	width: 52px;
+	height: 43px;
+}
+    
+.dogMoveFive {
+    background: -249px -2px;
+	width: 53px;
+	height: 48px;
+}
+  
+.dogMoveSix {
+    background: -311px -20px;
+	width: 33px;
+	height: 32px;
+}
+
+.dogShotMove {
+    background: -355px -10px;
+	width: 29px;
+	height: 39px;
+}

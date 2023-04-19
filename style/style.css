@@ -29,12 +29,23 @@ body {
 
 #board2 {
   position: absolute;
-  bottom: 0%;
+  bottom: 20%;
   width: 100%;
-  height: 40%;
+  height: 30%;
   object-fit: cover;
   z-index: 4;
 }
+
+#board3 {
+  position: absolute;
+  bottom: 0%;
+  width: 100%;
+  height: 25%;
+  object-fit: cover;
+  z-index: 4;
+}
+
+
 
 .score {
   position: absolute;
@@ -76,8 +87,8 @@ body {
 
 #liveDuck1 {
   position: absolute;
-  bottom: 5%;
-  left: 8%;
+  bottom: 2%;
+  left: 2%;
   width: 40px;
 	height: 40px;
   z-index: 8;
@@ -85,8 +96,8 @@ body {
 
 #liveDuck2 {
   position: absolute;
-  bottom: 5%;
-  left: 12%;
+  bottom: 2%;
+  left: 8%;
   width: 40px;
 	height: 40px;
   z-index: 8;
@@ -94,8 +105,8 @@ body {
 
 #liveDuck3 {
   position: absolute;
-  bottom: 5%;
-  left: 16%;
+  bottom: 2%;
+  left: 14%;
   width: 40px;
 	height: 40px;
   z-index: 8;
