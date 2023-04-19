@@ -93,14 +93,18 @@ window.onload = () => {
           let shots = 0;
           let score = document.getElementById("score");
           let scoreValue = 0
+          let deadDucks = 0
           duck.addEventListener('click', (event) => {
             event.target.classList.add("shot");
             shots += 1;
             scoreValue += 100;
             score.textContent = scoreValue;
+            deadDucks += 1;
             setTimeout(() => {
               duck.parentNode.removeChild(duck);
               document.getElementById("bullet"+shots).remove();
+              let duckTodead = document.getElementById("liveDuck"+deadDucks)
+              duckTodead.src = "images/duckDead.png"
               checkForWinner();
 
             }, 500);
