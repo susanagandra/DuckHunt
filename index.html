@@ -14,21 +14,41 @@
     <main class="container">
         
         <div id="game" class="game">
+
           <img id="board1" src="images/background.png" alt="game board">
           <img id="board2" src="images/grass.png" alt="grass">
           <img id="board3" src="images/road.png" alt="road">
           <div id="score" class="score">0</div>
+
           <div id="bullet" class="bullet">
             <img id="bullet1" src="images/bullet.png" alt="bullet">
             <img id="bullet2" src="images/bullet.png" alt="bullet">
             <img id="bullet3" src="images/bullet.png" alt="bullet">
           </div>
+
           <div id="liveDuck" class="leveDuck">
             <img id="liveDuck1" src="images/duckLive.png" alt="duck lives">
             <img id="liveDuck2" src="images/duckLive.png" alt="duck lives">
             <img id="liveDuck3" src="images/duckLive.png" alt="duck lives">
           </div>
+
+          <div id="image-container">
+            <div id="dog"> </div>
+            <div id="dogshot"> </div>
+            <div id="dogshotmiss"> </div>
+          </div>
+
         </div>
+
+        <!------ <div id="overlay">
+            <div class="white-box">
+                <div class="question">DUCK HUNT</div>
+                <div>
+                  <img id="playimage" src="images/gameImage.png" alt="game image">
+                </div>
+                <div id="playBtn" onclick="playGame()">PLAY &#9654;</div>
+            </div>
+          </div> ---->
 
         <script src="scripts/duck.js"></script>   
         <script src="scripts/dog.js"></script>   
