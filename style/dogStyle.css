@@ -1,53 +1,50 @@
 #dog {
     display: flex;
-    justify-content: end; 
-    align-items: flex-end;
+    flex-wrap: wrap;
+    flex-direction: row-reverse;
     position: absolute;
-    width: 180px;
-    height: 150px;
-    background-image: url('/images/duckhunt.png');
-    z-index: 10;
-  }
-  
-  .dogMove {
-    background-position: -24px -30px;
-  	width: 165px;
+    bottom: 20%;
+    width: 125px;
 	  height: 120px;
+    background-image: url('/images/dogSniffJump.png');
+    z-index: 10;
+    animation: moveForwardDog 10s;
   }
   
-  .dogMoveOne {
-    background-position: -207px -30px;
-    width: 159px;
-    height: 120px;
-  }
-  
-  .dogMoveTwo {
-    background-position: -387px -24px;
-    width: 153px;
-	  height: 129px;
-  }
-  
-  .dogMoveThree {
-    background-position: -567px -18px;
-    width: 153px;
-	  height: 129px;
-  }
-  
-  .dogMoveFour {
-    background-position: -747px -6px;
-    width: 159px;
-	  height: 144px;
-  }
-  
-  .dogMoveJump {
-    background-position: -933px -60px;
-    width: 99px;
-	  height: 96px;
+  @keyframes moveForwardDog {
+    from {left: 0%;}
+    to {left: 40%;}
   }
 
-  .dogMoveShot {
-    background-position: -1065px -30px;
-    width: 87px;
-  	height: 117px;
+  #dogshot {
+    display: flex;
+    flex-wrap: wrap;
+    position: absolute;
+    left: 45%;
+    bottom: 38%;
+    width: 135px;
+	  height: 95px;
+    background-image: url('/images/dog.png');
+    background-position: 2200px 0px;
+    animation: moveDogUp 2s;
+    z-index: 3;
   }
-  
+
+  @keyframes moveDogUp {
+    from {bottom: 20%;}
+    to {bottom: 37%;}
+  }
+
+  #dogshotmiss {
+    display: flex;
+    flex-wrap: wrap;
+    position: absolute;
+    left: 55%;
+    bottom: 38%;
+    width: 90px;
+	  height: 95px;
+    background-image: url('/images/dog.png');
+    background-position: -304px 22px;
+    animation: moveDogUp 2s;
+    z-index: 3;
+  }
