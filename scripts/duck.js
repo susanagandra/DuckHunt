@@ -13,7 +13,7 @@ var shots = 0;
         duck.id = "duck"
 
         function flightRight(){
-            setInterval(() => {
+            const tIDRight = setInterval(() => {
                 duck.classList.add("duck", "right");
                 duck.classList.toggle('flapRight');
               }, 400);
@@ -21,7 +21,7 @@ var shots = 0;
         }
 
         function flightLeft(){
-            setInterval(() => {
+          const tIDLeft = setInterval(() => {
                 duck.classList.add("duck", "left");
                 duck.classList.toggle('flapLeft');
               }, 400);
@@ -29,7 +29,7 @@ var shots = 0;
         }
 
         function flightTopRight(){
-            setInterval(() => {
+          const tIDTopRight = setInterval(() => {
                 duck.classList.add("duck", "topRight");
                 duck.classList.toggle('flapTopRight');
               }, 400);
@@ -37,7 +37,7 @@ var shots = 0;
         }
 
         function flightTopLeft(){
-            setInterval(() => {
+          const tIDTopLeft = setInterval(() => {
                 duck.classList.add("duck", "topLeftt");
                 duck.classList.toggle('flapTopLeft');
               }, 400);
@@ -60,6 +60,7 @@ var shots = 0;
                 flightTopLeft();
                 lateralPosition = newLateralPosition;
                 medialPosition = newMedialPosition
+                clearInterval(tIDTopLeft)
                
             }   
 
@@ -67,12 +68,14 @@ var shots = 0;
                 flightRight();
                 lateralPosition = newLateralPosition;
                 medialPosition = newMedialPosition
+                clearInterval(tIDRight)
             }
             
             if (lateralPosition < newLateralPosition && medialPosition > newMedialPosition) {
                 flightTopRight();
                 lateralPosition = newLateralPosition;
                 medialPosition = newMedialPosition;
+                clearInterval(tIDTopRight)
             }
           
             // update position of duck to new coordinates
@@ -86,6 +89,7 @@ var shots = 0;
           //kill duck, calculate shots and score
           duck.addEventListener('click', (event) => {
             event.target.classList.add("shot");
+            
          
           
             setTimeout(() => {
