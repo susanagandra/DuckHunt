@@ -1,35 +1,26 @@
-const createDog = () => {
-  const dog = document.createElement('div');
-  dog.id = "dog";
-  document.body.appendChild(dog);
-}
 
-createDog();
+const dogMove = () => {
+  const dogInterval = 0;
+  const spriteSheet = document.getElementById("dog");
+  const widthOfSpriteSheet = 1000;
+  const widthOfEachSprite = 125;
 
-const dogElement = document.getElementById("dog");
-let dogPosX = 0;
-let dogPosY = 68;
-let dogSpeedX = 0.2;
-let dogSpeedY = 0;
+  let position = 0;
+  const speed = 800; 
 
-const updateDogPosition = () => {
+  dogInterval = setInterval(() => {
+    spriteSheet.style.backgroundPosition = `-${position}px 120px`;
 
-  dogPosX += dogSpeedX;
+    if (position < widthOfSpriteSheet) {
+      position = position +widthOfEachSprite;
+    } else {
+      position = 0;
+      spriteSheet.remove();
+    }
 
-  if (dogPosX > 10) {
-    dogElement.style.backgroundPosition = "-24px -30px";
-    dogElement.style.backgroundPosition = "-207px -30px";
-    dogElement.style.backgroundPosition = "-387px -24px";
-    dogElement.style.backgroundPosition = "-207px -30px";
-  };
+  }, speed);
+};
 
-  if (dogPosX >= 40) {
-    dogElement.style.backgroundPosition = "-747px -6px";
-    dogSpeedX = 0;
-  };
-  
-  dogElement.style.left = dogPosX + "%";
-  dogElement.style.top = dogPosY + "%";
-}
+dogMove();
 
-setInterval(updateDogPosition, 10);
+

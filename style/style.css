@@ -110,5 +110,39 @@ body {
   z-index: 8;
 }
 
+#overlay {
+  display: flex;
+  position: fixed;
+  justify-content: center;
+  align-items: center;
+  top: 0;
+  bottom: 0;
+  width: 100vw;
+  height: auto;
+  justify-content: center;
+  align-items: center;
+  background-color: rgba(0,0,0,0.50);
+  z-index: 11;
+}
+
+.white-box {
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  width: 200px;
+  height: auto;
+  padding: 15px;
+  background-color: white;
+  border-radius: 10px;
+}
+
+.question {
+  margin: 7px 7px 15px 7px;
+  font-size: 20px;
+  font-family: "Lato-Regular", Arial, Helvetica, sans-serif;
+  color: green;
+}
 
 
