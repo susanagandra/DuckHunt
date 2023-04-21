@@ -28,7 +28,6 @@
     background-position: 2200px 0px;
     animation: moveDogUp 2s;
     z-index: 3;
-    visibility: hidden;
   }
 
   @keyframes moveDogUp {
