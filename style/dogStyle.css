@@ -28,6 +28,7 @@
     background-position: 2200px 0px;
     animation: moveDogUp 2s;
     z-index: 3;
+    visibility: hidden;
   }
 
   @keyframes moveDogUp {
@@ -39,7 +40,7 @@
     display: flex;
     flex-wrap: wrap;
     position: absolute;
-    left: 55%;
+    left: 45%;
     bottom: 38%;
     width: 90px;
 	  height: 95px;
@@ -47,4 +48,5 @@
     background-position: -304px 22px;
     animation: moveDogUp 2s;
     z-index: 3;
+    visibility: hidden;
   }
