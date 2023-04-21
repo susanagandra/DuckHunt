@@ -106,14 +106,6 @@ const playGame = () => {
           //kill duck, calculate shots and score
           duck.addEventListener('click', (event) => {
             event.target.classList.add("shot");
-
-            if (event.target !== duck) {
-              console.log("entrei no if para shots") // se o clique não acertou o pato
-              missedShot += 1;
-            }
-
-            console.log(missedShot)
-          
           
             setTimeout(() => {
               duck.parentNode.removeChild(duck);
@@ -129,6 +121,15 @@ const playGame = () => {
           return duck;
 
     }
+
+    const game = document.getElementById("game");
+
+        game.addEventListener("click", (event) => {
+          missedShot++;
+          console.log(missedShot);
+          checkWinner();
+        
+        } )
 
     
     function countShots(){
