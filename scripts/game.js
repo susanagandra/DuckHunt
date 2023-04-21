@@ -1,7 +1,9 @@
-let startGameCondition = false;
+
 var scoreValue = 0;
 var deadDucks = 0;
 var shots = 0;
+var missedShot = 0;
+
 
 const overlay = document.getElementById("overlay");
 const dogElement = document.getElementById("dog");
@@ -10,12 +12,10 @@ const playAgainButton = document.getElementById("overlayPlayAgain");
 const playGame = () => {
     overlay.style.display = "none";
     playAgainButton.style.display = "none";
-    startGameCondition = true;
     dogMove();
-    console.log("estou aqui")
+
     for (let i = 0; i < (Math.random() * 2) + 1; i++) {
       setTimeout(() => {
-        console.log("nao estou aqui")
           createDuck();
       
       }, 5000);
@@ -23,10 +23,6 @@ const playGame = () => {
     
 };
 
-if(startGameCondition){
-  console.log("começando novo jogo pelo inicio de td")
-
-}
     function createDuck() {
 
         const duck = document.createElement('div');
@@ -110,8 +106,14 @@ if(startGameCondition){
           //kill duck, calculate shots and score
           duck.addEventListener('click', (event) => {
             event.target.classList.add("shot");
-            
-         
+
+            if (event.target !== duck) {
+              console.log("entrei no if para shots") // se o clique não acertou o pato
+              missedShot += 1;
+            }
+
+            console.log(missedShot)
+          
           
             setTimeout(() => {
               duck.parentNode.removeChild(duck);
@@ -167,9 +169,27 @@ if(startGameCondition){
      function checkWinner() {
         
         const ducks = document.querySelectorAll(".duck");
+
+
+        if(ducks.length != 0 && missedShot == 3){
+          console.log("missed shots: " + missedShot);
+
+          const box = document.getElementById("game")
+          const htmlBlock = `<div id=overlay2> <div id="boxwinner"> <div>Game over!!</div> <div> Try again </div></div></div>`;
+          game.innerHTML += htmlBlock;  
+
+          setTimeout(function() {
+              
+            playAgainButton.style.display = "flex";
+            reseatDeadDucks();  
+            reseatShots();
+            scoreValue = 0;
+            score.textContent = scoreValue;
+          }, 6000);
+
+        }
     
         if (ducks.length === 0) {
-          startGameCondition = false;
 
           const box = document.getElementById("game")
           const htmlBlock = `<div id=overlay2> <div id="boxwinner"> <div>Congratulation!!</div> <div> You win the game </div></div></div>`;
