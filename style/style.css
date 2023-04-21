@@ -125,6 +125,37 @@ body {
   z-index: 11;
 }
 
+#overlay2 {
+  display: flex;
+  position: fixed;
+  justify-content: center;
+  align-items: center;
+  top: 0;
+  bottom: 0;
+  width: 100vw;
+  height: auto;
+  justify-content: center;
+  align-items: center;
+  background-color: rgba(0,0,0,0.50);
+  z-index: 11;
+}
+
+#overlayPlayAgain {
+  display: flex;
+  position: fixed;
+  justify-content: center;
+  align-items: center;
+  top: 0;
+  bottom: 0;
+  width: 100vw;
+  height: auto;
+  justify-content: center;
+  align-items: center;
+  background-color: rgba(0,0,0,0.50);
+  z-index: 11;
+}
+
+
 .white-box {
   display: flex;
   flex-wrap: wrap;
@@ -144,5 +175,20 @@ body {
   font-family: "Lato-Regular", Arial, Helvetica, sans-serif;
   color: green;
 }
+
+#boxwinner {
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  width: 200px;
+  height: auto;
+  padding: 15px;
+  background-color: pink;
+  border-radius: 10px;
+  z-index: 20;
+}
+
 
 

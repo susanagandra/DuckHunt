@@ -11,7 +11,7 @@
 </head>
 <body>
 
-    <main class="container">
+    <main id="container" class="container">
         
         <div id="game" class="game">
 
@@ -33,7 +33,6 @@
           </div>
 
           <div id="image-container">
-            <div id="dog" onclick="startGame()"> </div>
             <div id="dogshot"> </div>
             <div id="dogshotmiss"> </div>
           </div>
@@ -46,11 +45,21 @@
                 <div>
                   <img id="playimage" src="images/gameImage.png" alt="game image">
                 </div>
-                <div id="playBtn" onclick="playGame()">PLAY &#9654;</div>
+                <button id="playBtn" onclick="playGame()">PLAY &#9654;</button>
+            </div>
+          </div>
+          <div id="overlayPlayAgain" style ="display: none">
+            <div class="white-box">
+                <div class="question">DUCK HUNT</div>
+                <div>
+                  <img id="playimage" src="images/gameImage.png" alt="game image">
+                </div>
+                <button id="playAgainBtn" onclick="playGame()">PLAY AGAIN &#9654;</button>
             </div>
           </div>
 
-        <script src="scripts/duck.js"></script>   
+        <script src="scripts/duck.js"></script>
+     
     
     </main>
   

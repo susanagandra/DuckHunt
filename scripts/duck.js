@@ -1,11 +1,32 @@
-
-window.onload = () => {
-
-let startGame = true;
+let startGameCondition = false;
 var scoreValue = 0;
 var deadDucks = 0;
 var shots = 0;
 
+const overlay = document.getElementById("overlay");
+const dogElement = document.getElementById("dog");
+const playAgainButton = document.getElementById("overlayPlayAgain");
+
+const playGame = () => {
+    overlay.style.display = "none";
+    playAgainButton.style.display = "none";
+    startGameCondition = true;
+    dogMove();
+    console.log("estou aqui")
+    for (let i = 0; i < (Math.random() * 2) + 1; i++) {
+      setTimeout(() => {
+        console.log("nao estou aqui")
+          createDuck();
+      
+      }, 5000);
+    } 
+    
+};
+
+if(startGameCondition){
+  console.log("começando novo jogo pelo inicio de td")
+
+}
     function createDuck() {
 
         const duck = document.createElement('div');
@@ -13,7 +34,7 @@ var shots = 0;
         duck.id = "duck"
 
         function flightRight(){
-            const tIDRight = setInterval(() => {
+                setInterval(() => {
                 duck.classList.add("duck", "right");
                 duck.classList.toggle('flapRight');
               }, 400);
@@ -21,7 +42,7 @@ var shots = 0;
         }
 
         function flightLeft(){
-          const tIDLeft = setInterval(() => {
+                setInterval(() => {
                 duck.classList.add("duck", "left");
                 duck.classList.toggle('flapLeft');
               }, 400);
@@ -29,7 +50,7 @@ var shots = 0;
         }
 
         function flightTopRight(){
-          const tIDTopRight = setInterval(() => {
+                setInterval(() => {
                 duck.classList.add("duck", "topRight");
                 duck.classList.toggle('flapTopRight');
               }, 400);
@@ -37,7 +58,7 @@ var shots = 0;
         }
 
         function flightTopLeft(){
-          const tIDTopLeft = setInterval(() => {
+                setInterval(() => {
                 duck.classList.add("duck", "topLeftt");
                 duck.classList.toggle('flapTopLeft');
               }, 400);
@@ -60,7 +81,7 @@ var shots = 0;
                 flightTopLeft();
                 lateralPosition = newLateralPosition;
                 medialPosition = newMedialPosition
-                clearInterval(tIDTopLeft)
+                
                
             }   
 
@@ -68,14 +89,14 @@ var shots = 0;
                 flightRight();
                 lateralPosition = newLateralPosition;
                 medialPosition = newMedialPosition
-                clearInterval(tIDRight)
+                
             }
             
             if (lateralPosition < newLateralPosition && medialPosition > newMedialPosition) {
                 flightTopRight();
                 lateralPosition = newLateralPosition;
                 medialPosition = newMedialPosition;
-                clearInterval(tIDTopRight)
+               
             }
           
             // update position of duck to new coordinates
@@ -98,12 +119,9 @@ var shots = 0;
               addScore();
               countDeadDucks();
               countShots();
-         
 
-              checkWinner();
-         
-            
-
+              setTimeout(checkWinner(), 1000);
+      
             }, 500);
           });
           return duck;
@@ -140,7 +158,6 @@ var shots = 0;
         liveDuck3.src = "images/duckLive.png"
     }
 
-    
     let score = document.getElementById("score");
     function addScore(){
         scoreValue += 100;
@@ -152,32 +169,52 @@ var shots = 0;
         const ducks = document.querySelectorAll(".duck");
     
         if (ducks.length === 0) {
-            startGame = false;
-          alert('You Win! Press OK to play again.');
-            reseatDeadDucks();
-            reseatShots();
-            scoreValue = 0;
-            score.textContent = scoreValue;
-          for (let i = 0; i < (Math.random() * 2) + 1; i++) {
-            console.log((Math.random() * 2) + 1)
-            console.log("começando novo jogo do winner")
-           createDuck(); 
-          }
+          startGameCondition = false;
+
+          const box = document.getElementById("game")
+          const htmlBlock = `<div id=overlay2> <div id="boxwinner"> <div>Congratulation!!</div> <div> You win the game </div></div></div>`;
+          game.innerHTML += htmlBlock;          
+
+          
+            setTimeout(function() {
+              
+              playAgainButton.style.display = "flex";
+              reseatDeadDucks();  
+              reseatShots();
+              scoreValue = 0;
+              score.textContent = scoreValue;
+            }, 6000);
         }
       }
+   
 
-      //start game with a random number of ducks
-    if(startGame){
-        console.log("começando novo jogo pelo inicio de td")
-    for (let i = 0; i < (Math.random() * 2) + 1; i++) {
-        setTimeout(() => {
-            createDuck();
-        
-        }, 5000);
-      } 
-    }
+    const dogMove = () => {
+      const dog = document.createElement('div');
+      document.body.append(dog)
+      dog.id = "dog"
+
+      const spriteSheet = document.getElementById("dog");
+      const widthOfSpriteSheet = 1000;
+      const widthOfEachSprite = 125;
+    
+      let position = 0;
+      const speed = 800; 
+    
+      setInterval(() => {
+        spriteSheet.style.backgroundPosition = `-${position}px 120px`;
+    
+        if (position < widthOfSpriteSheet) {
+          position = position +widthOfEachSprite;
+        } else {
+          position = 0;
+          spriteSheet.remove();
+        }
+    
+      }, speed);
+    };
+    
+  
 
       
 
 
-}
