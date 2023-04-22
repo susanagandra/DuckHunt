@@ -23,6 +23,7 @@ const playGame = () => {
       setTimeout(() => {
         console.log("pato n: ")
         createDuck();
+        
       }, 4000);
     } 
     setTimeout(() => {
@@ -270,29 +271,37 @@ const playGame = () => {
 
     const dogMove = () => {
       const dog = document.createElement('div');
-      document.body.append(dog)
-      dog.id = "dog"
-
+      document.body.append(dog);
+      dog.id = "dog";
+    
       const spriteSheet = document.getElementById("dog");
       const widthOfSpriteSheet = 1000;
       const widthOfEachSprite = 125;
     
       let position = 0;
-      const speed = 800; 
     
-      setInterval(() => {
+      const audioBark = new Audio('/sounds/barkDucks.mp3');
+      audioBark.play();
+    
+      const interval = setInterval(() => {
         spriteSheet.style.backgroundPosition = `-${position}px 120px`;
     
         if (position < widthOfSpriteSheet) {
-          position = position +widthOfEachSprite;
+          position = position + widthOfEachSprite;
         } else {
           position = 0;
+          clearInterval(interval);
           spriteSheet.remove();
+          audioBark.pause();
+          audioBark.currentTime = 0;
+          audioBark.onended = () => {
+            audioBark.remove();
+          };
         }
-    
-      }, speed);
+      }, 800);
     };
     
+      
   
 
       
