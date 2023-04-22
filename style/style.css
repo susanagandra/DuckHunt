@@ -83,7 +83,7 @@ body {
   z-index: 8;
 }
 
-#liveDuck1 {
+#liveDuck0 {
   position: absolute;
   bottom: 2%;
   left: 2%;
@@ -92,7 +92,7 @@ body {
   z-index: 8;
 }
 
-#liveDuck2 {
+#liveDuck1 {
   position: absolute;
   bottom: 2%;
   left: 8%;
@@ -101,7 +101,7 @@ body {
   z-index: 8;
 }
 
-#liveDuck3 {
+#liveDuck2 {
   position: absolute;
   bottom: 2%;
   left: 14%;

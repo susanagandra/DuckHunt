@@ -2,6 +2,7 @@
 var scoreValue = 0;
 var deadDucks = 0;
 var shots = 3;
+let numberofducks = 0;
 
 
 
@@ -13,16 +14,22 @@ const playAgainButton = document.getElementById("overlayPlayAgain");
 const playGame = () => {
     overlay.style.display = "none";
     playAgainButton.style.display = "none";
-   
   
     dogMove();
 
-    for (let i = 0; i < (Math.random() * 2) + 1; i++) {
+    numberofducks = (Math.random() * 2) + 1;
+    console.log(numberofducks)
+    for (let i = 0; i < numberofducks; i++) {
       setTimeout(() => {
-          createDuck();
-      
-      }, 5000);
+        console.log("pato n: ")
+        createDuck();
+      }, 4000);
     } 
+    setTimeout(() => {
+      createLiveDucks();
+    
+    }, 2000);
+    
     
 };
 
@@ -142,7 +149,9 @@ const playGame = () => {
 
     
     function countShots(){
+      console.log("shots: " + shots)
         shots -= 1
+        console.log("shots: " + shots)
         document.getElementById("bullet"+(3-shots)).style.display = "none"
     }
 
@@ -165,20 +174,22 @@ const playGame = () => {
     }
 
     function countDeadDucks(){
-        deadDucks += 1;
         let duckTodead = document.getElementById("liveDuck"+deadDucks)
         duckTodead.src = "images/duckDead.png"
+        deadDucks += 1;
     }
 
     function reseatDeadDucks(){
         deadDucks = 0
+        let liveDuck0 = document.getElementById("liveDuck0")
         let liveDuck1 = document.getElementById("liveDuck1")
         let liveDuck2 = document.getElementById("liveDuck2")
-        let liveDuck3 = document.getElementById("liveDuck3")
 
-        liveDuck1.src = "images/duckLive.png"
-        liveDuck2.src = "images/duckLive.png"
-        liveDuck3.src = "images/duckLive.png"
+        liveDuck0.remove();
+        liveDuck1.remove();
+        liveDuck2.remove();
+
+
     }
 
     let score = document.getElementById("score");
@@ -243,7 +254,19 @@ const playGame = () => {
             }, 6000);
         }
       }
-   
+    
+    function createLiveDucks(){
+      const liveduck = document.getElementById("liveduck");
+      for (let i = 0; i < numberofducks; i++) {
+        const duckImg = document.createElement("img");
+        duckImg.id = "liveDuck" + i;
+        duckImg.src = "images/duckLive.png";
+        duckImg.alt = "duck lives";
+        document.body.appendChild(duckImg);
+      }
+
+
+    }
 
     const dogMove = () => {
       const dog = document.createElement('div');
