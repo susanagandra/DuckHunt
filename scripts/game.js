@@ -1,10 +1,7 @@
-
-var scoreValue = 0;
-var deadDucks = 0;
-var shots = 3;
+let scoreValue = 0;
+let deadDucks = 0;
+let shots = 3;
 let numberofducks = 0;
-
-
 
 const overlay = document.getElementById("overlay");
 
@@ -12,68 +9,60 @@ const dogElement = document.getElementById("dog");
 const playAgainButton = document.getElementById("overlayPlayAgain");
 
 const playGame = () => {
+
     overlay.style.display = "none";
     playAgainButton.style.display = "none";
   
     dogMove();
 
     numberofducks = (Math.random() * 2) + 1;
-    console.log(numberofducks)
+   
     for (let i = 0; i < numberofducks; i++) {
       setTimeout(() => {
-        console.log("pato n: ")
         createDuck();
-        
       }, 4000);
-    } 
+    };
+
     setTimeout(() => {
       createLiveDucks();
-    
     }, 2000);
-    
-    
 };
 
-    function createDuck() {
+const createDuck = () => {
 
-        const duck = document.createElement('div');
-        document.body.append(duck)
-        duck.id = "duck"
+  const duck = document.createElement('div');
+  document.body.append(duck);
+  duck.id = "duck";
 
-        function flightRight(){
-                setInterval(() => {
-                duck.classList.add("duck", "right");
-                duck.classList.toggle('flapRight');
-              }, 400);
-        
-        }
+    const flightRight  = () =>{
+      setInterval(() => {
+        duck.classList.add("duck", "right");
+        duck.classList.toggle('flapRight');
+      }, 400);
+    };
 
-        function flightLeft(){
-                setInterval(() => {
-                duck.classList.add("duck", "left");
-                duck.classList.toggle('flapLeft');
-              }, 400);
-        
-        }
+    const flightLeft = () => {
+      setInterval(() => {
+          duck.classList.add("duck", "left");
+          duck.classList.toggle('flapLeft');
+      }, 400);    
+    };
 
-        function flightTopRight(){
-                setInterval(() => {
-                duck.classList.add("duck", "topRight");
-                duck.classList.toggle('flapTopRight');
-              }, 400);
-        
-        }
-
-        function flightTopLeft(){
-                setInterval(() => {
-                duck.classList.add("duck", "topLeftt");
-                duck.classList.toggle('flapTopLeft');
-              }, 400);
-        
-        }
-
-
+    const flightTopRight = () => {
         setInterval(() => {
+          duck.classList.add("duck", "topRight");
+          duck.classList.toggle('flapTopRight');
+          }, 400);
+    };
+
+    const flightTopLeft  = () => {
+          setInterval(() => {
+          duck.classList.add("duck", "topLeftt");
+          duck.classList.toggle('flapTopLeft');
+          }, 400);
+    };
+
+      setInterval(() => {
 
             let medialPosition = Math.random() * window.innerHeight + 10;
             let lateralPosition = Math.random() * window.innerWidth + 10;
@@ -87,12 +76,10 @@ const playGame = () => {
             if (lateralPosition < newLateralPosition && medialPosition < newMedialPosition) {
                 flightTopLeft();
                 lateralPosition = newLateralPosition;
-                medialPosition = newMedialPosition
+                medialPosition = newMedialPosition;
                 duck.style.top = `${newMedialPosition}px`;
                 duck.style.left = `${newLateralPosition}px`;
-                
-               
-            }   
+            };
 
             if (lateralPosition > newLateralPosition && medialPosition == newMedialPosition) {
                 flightRight();
@@ -100,8 +87,7 @@ const playGame = () => {
                 medialPosition = newMedialPosition
                 duck.style.top = `${newMedialPosition}px`;
                 duck.style.left = `${newLateralPosition}px`;
-                
-            }
+            };
             
             if (lateralPosition < newLateralPosition && medialPosition > newMedialPosition) {
                 flightTopRight();
@@ -109,17 +95,9 @@ const playGame = () => {
                 medialPosition = newMedialPosition;
                 duck.style.top = `${newMedialPosition}px`;
                 duck.style.left = `${newLateralPosition}px`;
-                
-               
-            }
-          
-            // update position of duck to new coordinates
+            };
+          }, 2000);  // update position of duck to new coordinates
            
-
-          }, 2000);
-
-         
-         
           //kill duck, calculate shots and score
           duck.addEventListener('click', (event) => {
             event.target.classList.add("shot");
@@ -137,8 +115,8 @@ const playGame = () => {
             }, 500);
           });
           return duck;
+};
 
-    }
 
     const game = document.getElementById("game");
 
@@ -269,22 +247,22 @@ const playGame = () => {
 
     }
 
-    const dogMove = () => {
-      const dog = document.createElement('div');
-      document.body.append(dog);
-      dog.id = "dog";
+const dogMove = () => {
+  const dog = document.createElement('div');
+  document.body.append(dog);
+  dog.id = "dog";
     
-      const spriteSheet = document.getElementById("dog");
-      const widthOfSpriteSheet = 1000;
-      const widthOfEachSprite = 125;
+  const spriteSheet = document.getElementById("dog");
+  const widthOfSpriteSheet = 1000;
+  const widthOfEachSprite = 125;
     
-      let position = 0;
+  let position = 0;
     
-      const audioBark = new Audio('/sounds/barkDucks.mp3');
-      audioBark.play();
+  const audioBark = new Audio('/sounds/barkDucks.mp3');
+  audioBark.play();
     
-      const interval = setInterval(() => {
-        spriteSheet.style.backgroundPosition = `-${position}px 120px`;
+    setInterval(() => {
+      spriteSheet.style.backgroundPosition = `-${position}px 120px`;
     
         if (position < widthOfSpriteSheet) {
           position = position + widthOfEachSprite;
@@ -294,12 +272,12 @@ const playGame = () => {
           spriteSheet.remove();
           audioBark.pause();
           audioBark.currentTime = 0;
-          audioBark.onended = () => {
+            audioBark.onended = () => {
             audioBark.remove();
-          };
-        }
+            };
+        };
       }, 800);
-    };
+};
     
       
   
