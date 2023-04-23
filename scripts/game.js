@@ -56,6 +56,7 @@ const flappingDuck = () => {
 
 const flyingDuck = () => {
   flappingDuck();
+
   const spriteSheet = document.getElementById("duck"); // get the
   spriteSheet.style.width = 110 + "px";
   spriteSheet.style.height = 110 + "px";
@@ -105,7 +106,7 @@ const flyingDuck = () => {
         position = 0;
       }
     }
-  }, 90);
+  }, 50);
 
   function getRandomDirection() {
     return Math.floor(Math.random() * 3) - 1; // return a random number between -1 and 1
@@ -177,7 +178,7 @@ const switchDirections = () => {
               setTimeout(checkWinner(), 1000);
       
             }, 500);
-          });
+  });
   
 
 
