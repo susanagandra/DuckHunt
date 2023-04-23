@@ -136,7 +136,6 @@ body {
   height: auto;
   justify-content: center;
   align-items: center;
-  background-color: rgba(0,0,0,0.50);
   z-index: 11;
 }
 
@@ -151,7 +150,6 @@ body {
   height: auto;
   justify-content: center;
   align-items: center;
-  background-color: rgba(0,0,0,0.50);
   z-index: 11;
 }
 
