@@ -23,6 +23,7 @@ const playGame = () => {
    
     for (let i = 0; i < numberofducks; i++) {
       setTimeout(() => {
+        flappingDuck();
         flyingDuck();
         switchDirections();
       }, 4000);
@@ -56,57 +57,52 @@ const flappingDuck = () => {
 
 const flyingDuck = () => {
   flappingDuck();
-
-  const spriteSheet = document.getElementById("duck"); // get the
+  const spriteSheet = document.getElementById("duck"); 
   spriteSheet.style.width = 110 + "px";
   spriteSheet.style.height = 110 + "px";
   
   let position = 0;
   let xPosition = window.innerWidth; 
-  let yPosition = window.innerHeight; // set the initial y position to the center of the screen
-  let xDirection = getRandomDirection(); // initialize xDirection randomly
-  let yDirection = getRandomDirection(); // initialize yDirection randomly
+  let yPosition = window.innerHeight; 
+  let xDirection = getRandomDirection(); 
+  let yDirection = getRandomDirection();
 
   const interval = setInterval(() => {
-    spriteSheet.style.left = `${xPosition}px`; // move the div horizontally
-    spriteSheet.style.top = `${yPosition}px`; // move the div vertically
-    spriteSheet.style.backgroundPosition = `-${position}px 0px`; // set background position of the image
+    spriteSheet.style.left = `${xPosition}px`; // move div horizontally
+    spriteSheet.style.top = `${yPosition}px`; // move div vertically
+    spriteSheet.style.backgroundPosition = `-${position}px 0px`;
 
-    xPosition += xDirection * 10; // modify xPosition
-    yPosition += yDirection * 10; // modify yPosition
+    xPosition += xDirection * 10;
+    yPosition += yDirection * 10;
 
-    if (xPosition > window.innerWidth - 110) { // check if the div hits the right limit
-      xPosition = window.innerWidth - 110; // set the div to the right limit
+    if (xPosition > window.innerWidth - 110) { // right limit
+      xPosition = window.innerWidth - 110; // set div right limit
       xDirection = getRandomDirection();
       spriteSheet.style.transform = "scaleX(-1)";
     }
 
-    if (xPosition < 0) { // check if the div hits the left limit
-      xPosition = 0; // set the div to the left limit
+    if (xPosition < 0) { // left limit
+      xPosition = 0; // set div left limit
       xDirection = getRandomDirection();
-      spriteSheet.style.transform = "scaleX(1)"; // change xDirection randomly
+      spriteSheet.style.transform = "scaleX(1)";
     }
 
-    if (yPosition > window.innerHeight - 110) { // check if the div hits the bottom limit
-      yPosition = window.innerHeight - 110; // set the div to the bottom limit
-      yDirection = getRandomDirection(); // change yDirection randomly
+    if (yPosition > window.innerHeight - 110) { // bottom limit
+      yPosition = window.innerHeight - 110; // set div bottom limit
+      yDirection = getRandomDirection(); 
     }
 
-    if (yPosition < 0) { // check if the div hits the top limit
-      yPosition = 0; // set the div to the top limit
-      yDirection = getRandomDirection(); // change yDirection randomly
-    }
+    if (yPosition < 0) { // top limit
+      yPosition = 0; // set div top limit
+      yDirection = getRandomDirection();
+    };
 
     if (xDirection === 0 && yDirection === 0) { // check if there is no movement
-      position = 0; // set the initial background position
+      position = 0; 
     } else {
-      if (position < 110) {
-        position += 110;
-      } else {
-        position = 0;
-      }
+      yDirection = getRandomDirection();
     }
-  }, 50);
+  }, 200);
 
   function getRandomDirection() {
     return Math.floor(Math.random() * 3) - 1; // return a random number between -1 and 1
@@ -116,12 +112,13 @@ const flyingDuck = () => {
 
 const switchDirections = () => {
   const spriteSheet = document.getElementById("duck");
+  position = 0;
 
   tID = setInterval(() => {
-    spriteSheet.style.left = `${xPosition}px`; // move the div horizontally
-    spriteSheet.style.top = `${yPosition}px`; // move the div vertically
-    spriteSheet.style.backgroundPosition = `-${position}px 0px`; // set background position of the image
-
+    spriteSheet.style.left = `${xPosition}px`; 
+    spriteSheet.style.top = `${yPosition}px`; 
+    spriteSheet.style.backgroundPosition = `-${position}px 0px`; 
+  
 
     if (spriteSheet) {
       spriteSheet.style.backgroundPosition = `-${position}px 0px`;
@@ -181,9 +178,7 @@ const switchDirections = () => {
   });
   
 
-
-const game = document.getElementById("game");
-
+  const game = document.getElementById("game");
   game.addEventListener("click", (event) => {
     countShots();
     checkWinner();
