@@ -24,19 +24,20 @@ const flappingDuck = () => {
 
 const flyingDuck = () => {
   flappingDuck();
-  const spriteSheet = document.getElementById("animateduck"); // get the
+  const spriteSheet = document.getElementById("animateduck"); 
   spriteSheet.style.width = 110 + "px";
   spriteSheet.style.height = 110 + "px";
   
   let position = 0;
   let xPosition = window.innerWidth; 
-  let yPosition = window.innerHeight; // set the initial y position to the center of the screen
-  let xDirection = getRandomDirection(); // initialize xDirection randomly
-  let yDirection = getRandomDirection(); // initialize yDirection randomly
+  let yPosition = window.innerHeight; 
+  let xDirection = getRandomDirection(); 
+  let yDirection = getRandomDirection(); 
 
   const interval = setInterval(() => {
     spriteSheet.style.left = `${xPosition}px`; // move the div horizontally
     spriteSheet.style.top = `${yPosition}px`; // move the div vertically
+
     spriteSheet.style.backgroundPosition = `-${position}px 0px`; // set background position of the image
 
     xPosition += xDirection * 10; // modify xPosition
@@ -48,20 +49,20 @@ const flyingDuck = () => {
       spriteSheet.style.transform = "scaleX(-1)";
     }
 
-    if (xPosition < 0) { // check if the div hits the left limit
-      xPosition = 0; // set the div to the left limit
+    if (xPosition < 0) { // left limit
+      xPosition = 0; 
       xDirection = getRandomDirection();
-      spriteSheet.style.transform = "scaleX(1)"; // change xDirection randomly
+      spriteSheet.style.transform = "scaleX(1)"; 
     }
 
-    if (yPosition > window.innerHeight - 110) { // check if the div hits the bottom limit
-      yPosition = window.innerHeight - 110; // set the div to the bottom limit
-      yDirection = getRandomDirection(); // change yDirection randomly
+    if (yPosition > window.innerHeight - 110) { // bottom limit
+      yPosition = window.innerHeight - 110; 
+      yDirection = getRandomDirection(); 
     }
 
-    if (yPosition < 0) { // check if the div hits the top limit
-      yPosition = 0; // set the div to the top limit
-      yDirection = getRandomDirection(); // change yDirection randomly
+    if (yPosition < 0) { // top limit
+      yPosition = 0; 
+      yDirection = getRandomDirection();
     }
 
     if (xDirection === 0 && yDirection === 0) { // check if there is no movement

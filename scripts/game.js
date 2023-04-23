@@ -8,6 +8,10 @@ const overlay = document.getElementById("overlay");
 const dogElement = document.getElementById("dog");
 const playAgainButton = document.getElementById("overlayPlayAgain");
 
+const sprite = document.createElement('div');
+document.body.append(sprite);
+sprite.id = "duck";
+
 const playGame = () => {
 
     overlay.style.display = "none";
@@ -19,7 +23,8 @@ const playGame = () => {
    
     for (let i = 0; i < numberofducks; i++) {
       setTimeout(() => {
-        createDuck();
+        flyingDuck();
+        switchDirections();
       }, 4000);
     };
 
@@ -28,78 +33,136 @@ const playGame = () => {
     }, 2000);
 };
 
-const createDuck = () => {
 
-  const duck = document.createElement('div');
-  document.body.append(duck);
-  duck.id = "duck";
+const spriteSheet = document.getElementById("duck");
+spriteSheet.style.backgroundImage = `url('/images/duckdle.png')`;
 
-    const flightRight  = () =>{
-      setInterval(() => {
-        duck.classList.add("duck", "right");
-        duck.classList.toggle('flapRight');
-      }, 400);
-    };
+const flappingDuck = () => {
+  spriteSheet.style.width = 110 + "px";
+  spriteSheet.style.height = 110 + "px";
+  
+  let position = 0;
+  const interval = setInterval(() => {
+    spriteSheet.style.backgroundPosition = `-${position}px 110px`;
 
-    const flightLeft = () => {
-      setInterval(() => {
-          duck.classList.add("duck", "left");
-          duck.classList.toggle('flapLeft');
-      }, 400);    
-    };
-
-    const flightTopRight = () => {
-        setInterval(() => {
-          duck.classList.add("duck", "topRight");
-          duck.classList.toggle('flapTopRight');
-          }, 400);
-    };
-
-    const flightTopLeft  = () => {
-          setInterval(() => {
-          duck.classList.add("duck", "topLeftt");
-          duck.classList.toggle('flapTopLeft');
-          }, 400);
-    };
-
-      setInterval(() => {
-
-            let medialPosition = Math.random() * window.innerHeight + 10;
-            let lateralPosition = Math.random() * window.innerWidth + 10;
-            duck.style.top = `${medialPosition}px`;
-            duck.style.left = `${lateralPosition}px`;
-
-            const newMedialPosition = Math.random() * window.innerHeight;
-            const newLateralPosition = Math.random() * window.innerWidth;
+    if (position < 110) {
+      position = position + 110;
+    } else {
+      position = 0;
+    }
+  }, 90);
+};
 
 
-            if (lateralPosition < newLateralPosition && medialPosition < newMedialPosition) {
-                flightTopLeft();
-                lateralPosition = newLateralPosition;
-                medialPosition = newMedialPosition;
-                duck.style.top = `${newMedialPosition}px`;
-                duck.style.left = `${newLateralPosition}px`;
-            };
+const flyingDuck = () => {
+  flappingDuck();
+  const spriteSheet = document.getElementById("duck"); // get the
+  spriteSheet.style.width = 110 + "px";
+  spriteSheet.style.height = 110 + "px";
+  
+  let position = 0;
+  let xPosition = window.innerWidth; 
+  let yPosition = window.innerHeight; // set the initial y position to the center of the screen
+  let xDirection = getRandomDirection(); // initialize xDirection randomly
+  let yDirection = getRandomDirection(); // initialize yDirection randomly
 
-            if (lateralPosition > newLateralPosition && medialPosition == newMedialPosition) {
-                flightRight();
-                lateralPosition = newLateralPosition;
-                medialPosition = newMedialPosition
-                duck.style.top = `${newMedialPosition}px`;
-                duck.style.left = `${newLateralPosition}px`;
-            };
-            
-            if (lateralPosition < newLateralPosition && medialPosition > newMedialPosition) {
-                flightTopRight();
-                lateralPosition = newLateralPosition;
-                medialPosition = newMedialPosition;
-                duck.style.top = `${newMedialPosition}px`;
-                duck.style.left = `${newLateralPosition}px`;
-            };
-          }, 2000);  // update position of duck to new coordinates
-           
-          //kill duck, calculate shots and score
-          duck.addEventListener('click', (event) => {
+  const interval = setInterval(() => {
+    spriteSheet.style.left = `${xPosition}px`; // move the div horizontally
+    spriteSheet.style.top = `${yPosition}px`; // move the div vertically
+    spriteSheet.style.backgroundPosition = `-${position}px 0px`; // set background position of the image
+
+    xPosition += xDirection * 10; // modify xPosition
+    yPosition += yDirection * 10; // modify yPosition
+
+    if (xPosition > window.innerWidth - 110) { // check if the div hits the right limit
+      xPosition = window.innerWidth - 110; // set the div to the right limit
+      xDirection = getRandomDirection();
+      spriteSheet.style.transform = "scaleX(-1)";
+    }
+
+    if (xPosition < 0) { // check if the div hits the left limit
+      xPosition = 0; // set the div to the left limit
+      xDirection = getRandomDirection();
+      spriteSheet.style.transform = "scaleX(1)"; // change xDirection randomly
+    }
+
+    if (yPosition > window.innerHeight - 110) { // check if the div hits the bottom limit
+      yPosition = window.innerHeight - 110; // set the div to the bottom limit
+      yDirection = getRandomDirection(); // change yDirection randomly
+    }
+
+    if (yPosition < 0) { // check if the div hits the top limit
+      yPosition = 0; // set the div to the top limit
+      yDirection = getRandomDirection(); // change yDirection randomly
+    }
+
+    if (xDirection === 0 && yDirection === 0) { // check if there is no movement
+      position = 0; // set the initial background position
+    } else {
+      if (position < 110) {
+        position += 110;
+      } else {
+        position = 0;
+      }
+    }
+  }, 90);
+
+  function getRandomDirection() {
+    return Math.floor(Math.random() * 3) - 1; // return a random number between -1 and 1
+  }
+};
+
+
+const switchDirections = () => {
+  const spriteSheet = document.getElementById("duck");
+
+  tID = setInterval(() => {
+    spriteSheet.style.left = `${xPosition}px`; // move the div horizontally
+    spriteSheet.style.top = `${yPosition}px`; // move the div vertically
+    spriteSheet.style.backgroundPosition = `-${position}px 0px`; // set background position of the image
+
+
+    if (spriteSheet) {
+      spriteSheet.style.backgroundPosition = `-${position}px 0px`;
+    }
+
+    if (position < 110) {
+      position = position + 110;
+    } else {
+      position = 110;
+    }
+  }, interval);
+
+  root = document.documentElement;
+
+  let positionX = spriteSheet.positionX;
+  let positionY = spriteSheet.positionY;
+
+  spriteSheet.classList.remove("animeteduck");
+
+  let newPositionX = getRandomInt(25, 95);
+  let newPositionY = getRandomInt(25, 95);
+
+  if (newPositionX > positionX && newPositionY != positionY) {
+    spriteSheet.classList.add("duck-right-top");
+  } else if (newPositionX < positionX && newPositionY != positionY) {
+    spriteSheet.classList.add("duck-left-top");
+  } else if (newPositionX == positionX && newPositionY > positionY) {
+    spriteSheet.classList.add("right");
+  } else if (newPositionX == positionX && newPositionY < positionY) {
+    spriteSheet.classList.add("left");
+  };
+
+
+  spriteSheet.positionX = newPositionX;
+  spriteSheet.positionY = newPositionY;
+
+  void spriteSheet.offsetWidth; // restart da ANIMATION!!!!
+  spriteSheet.classList.add("animeteduck");
+};
+
+
+  duck.addEventListener('click', (event) => {
             event.target.classList.add("shot");
             const audioShot = new Audio('/sounds/gunSound.mp3');
             audioShot.play();
@@ -115,8 +178,8 @@ const createDuck = () => {
       
             }, 500);
           });
-          return duck;
-};
+  
+
 
 const game = document.getElementById("game");
 
