@@ -1,14 +1,17 @@
 let scoreValue = 0;
 let deadDucks = 0;
 let shots = 3;
-let numberofducks = 0;
 
 const overlay = document.getElementById("overlay");
-
 const dogElement = document.getElementById("dog");
 const playAgainButton = document.getElementById("overlayPlayAgain");
 
 const playGame = () => {
+
+    scoreValue = 0;
+    deadDucks = 0;
+    shots = 3;
+  
 
     overlay.style.display = "none";
     playAgainButton.style.display = "none";
@@ -16,6 +19,11 @@ const playGame = () => {
     dogMove();
 
     numberofducks = (Math.random() * 2) + 1;
+
+    setTimeout(() => {
+      createLiveDucks(numberofducks);
+      resetScore();
+    }, 2000);
    
     for (let i = 0; i < numberofducks; i++) {
       setTimeout(() => {
@@ -23,9 +31,7 @@ const playGame = () => {
       }, 4000);
     };
 
-    setTimeout(() => {
-      createLiveDucks();
-    }, 2000);
+   
 };
 
 const createDuck = () => {
@@ -157,14 +163,13 @@ const countDeadDucks = () => {
 };
 
 const reseatDeadDucks = () =>{
-  deadDucks = 0;
-  let liveDuck0 = document.getElementById("liveDuck0");
-  let liveDuck1 = document.getElementById("liveDuck1");
-  let liveDuck2 = document.getElementById("liveDuck2");
 
-  liveDuck0.remove();
-  liveDuck1.remove();
-  liveDuck2.remove();
+  deadDucks = 0;
+  const liveduck = document.getElementById("liveduck");
+      for (let i = 0; i < numberofducks; i++) {
+        let liveDucki = document.getElementById("liveDuck" + i);
+        liveDucki.remove();
+      };
 };
 
 const addScore = () => {
@@ -188,6 +193,9 @@ const checkWinner = () => {
       const htmlBlock = `<div id=overlay2> <div> <div>Game over!!</div> <div> Try again </div></div></div>`;
       game.innerHTML += htmlBlock;  
 
+      reseatDeadDucks();  
+      reseatShots();
+
       setTimeout(function() {
         const overlay2 = document.getElementById("overlay2"); 
         overlay2.style.display = "none";           
@@ -196,11 +204,10 @@ const checkWinner = () => {
 
         ducks.forEach(duck => {
             duck.remove();});
-        
-        resetScore();
-        reseatDeadDucks();  
-        reseatShots();
         }, 6000);
+
+        //resetScore();
+        
       };
     
   if (ducks.length === 0) {
@@ -212,14 +219,14 @@ const checkWinner = () => {
         const overlay2 = document.getElementById("overlay2");
         overlay2.style.display = "none";
         playAgainButton.style.display = "flex";
-        resetScore();
+        //resetScore();
         reseatDeadDucks();  
         reseatShots();      
         }, 6000);
       };
 };
     
-const createLiveDucks = () => {
+const createLiveDucks = (numberofducks) => {
   const liveduck = document.getElementById("liveduck");
       for (let i = 0; i < numberofducks; i++) {
         const duckImg = document.createElement("img");
