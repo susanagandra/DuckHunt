@@ -6,14 +6,31 @@ const spriteSheet = document.getElementById("animateduck");
 spriteSheet.style.backgroundImage = `url('/images/duckdle.png')`;
 
 const flappingDuck = () => {
-  const spriteSheet = document.getElementById("animateduck"); // get the spriteSheet element
-  spriteSheet.style.position = "absolute"; // set position to absolute
   spriteSheet.style.width = 110 + "px";
   spriteSheet.style.height = 110 + "px";
   
   let position = 0;
-  let xPosition = window.innerWidth / 2 - 55; // set the initial x position to the center of the screen
-  let yPosition = window.innerHeight / 2 - 55; // set the initial y position to the center of the screen
+  const interval = setInterval(() => {
+    spriteSheet.style.backgroundPosition = `-${position}px 110px`;
+
+    if (position < 110) {
+      position = position + 110;
+    } else {
+      position = 0;
+    }
+  }, 90);
+};
+
+
+const flyingDuck = () => {
+  flappingDuck();
+  const spriteSheet = document.getElementById("animateduck"); // get the
+  spriteSheet.style.width = 110 + "px";
+  spriteSheet.style.height = 110 + "px";
+  
+  let position = 0;
+  let xPosition = window.innerWidth; 
+  let yPosition = window.innerHeight; // set the initial y position to the center of the screen
   let xDirection = getRandomDirection(); // initialize xDirection randomly
   let yDirection = getRandomDirection(); // initialize yDirection randomly
 
@@ -27,12 +44,14 @@ const flappingDuck = () => {
 
     if (xPosition > window.innerWidth - 110) { // check if the div hits the right limit
       xPosition = window.innerWidth - 110; // set the div to the right limit
-      xDirection = getRandomDirection(); // change xDirection randomly
+      xDirection = getRandomDirection();
+      spriteSheet.style.transform = "scaleX(-1)";
     }
 
     if (xPosition < 0) { // check if the div hits the left limit
       xPosition = 0; // set the div to the left limit
-      xDirection = getRandomDirection(); // change xDirection randomly
+      xDirection = getRandomDirection();
+      spriteSheet.style.transform = "scaleX(1)"; // change xDirection randomly
     }
 
     if (yPosition > window.innerHeight - 110) { // check if the div hits the bottom limit
@@ -62,12 +81,15 @@ const flappingDuck = () => {
 };
 
 
-flappingDuck();
-
 const switchDirections = () => {
   const spriteSheet = document.getElementById("animateduck");
 
   tID = setInterval(() => {
+    spriteSheet.style.left = `${xPosition}px`; // move the div horizontally
+    spriteSheet.style.top = `${yPosition}px`; // move the div vertically
+    spriteSheet.style.backgroundPosition = `-${position}px 0px`; // set background position of the image
+
+
     if (spriteSheet) {
       spriteSheet.style.backgroundPosition = `-${position}px 0px`;
     }
@@ -97,17 +119,8 @@ const switchDirections = () => {
     spriteSheet.classList.add("right");
   } else if (newPositionX == positionX && newPositionY < positionY) {
     spriteSheet.classList.add("left");
-  }
-  /*     else {
-    newPositionX = getRandomInt(25,100);
-    newPositionY = getRandomInt(25,100);
-  } */
+  };
 
-  root.style.setProperty("--inicialX", positionX + "%");
-  root.style.setProperty("--inicialY", positionY + "%");
-
-  root.style.setProperty("--finalX", newPositionX + "%");
-  root.style.setProperty("--finalY", newPositionY + "%");
 
   spriteSheet.positionX = newPositionX;
   spriteSheet.positionY = newPositionY;
@@ -116,5 +129,11 @@ const switchDirections = () => {
   spriteSheet.classList.add("animeteduck");
 };
 
-switchDirections();
 
+
+const createDuck = () => {
+  flyingDuck();
+  switchDirections();
+};
+
+createDuck();
