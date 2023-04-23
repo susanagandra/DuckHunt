@@ -1,9 +1,11 @@
 **[MindSwap Bootcamp's](https://mindswap.academy/)** project
+
 created by **[Daniela Spitze](https://github.com/DaniSpitzer/)**,
+
 **[Susana Gandra](https://github.com/susanagandra/)**.
 
 
-#**Duck Hunt Game - A Unic Version
+#**[Duck Hunt Game - A Unic Version]
 
 Welcome to Duck Hunt, a classic shooting game brought to life!
 
