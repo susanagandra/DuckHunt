@@ -20,52 +20,21 @@ const flappingDuck = () => {
       position = 0;
     }
   }, 90);
-};
+
+  spriteSheet.addEventListener("animationend", function handleAnimationEnd() {
+    const newRandomDirection =
+      directions[Math.floor(Math.random() * directions.length)];
+      spriteSheet.classList.toggle("animateduck-" + randomDirection);
+      spriteSheet.classList.toggle("animateduck-" + newRandomDirection);
+      spriteSheet.removeEventListener("animationend", handleAnimationEnd);
+      spriteSheet.addEventListener("animationend", handleAnimationEnd); 
+  });
 
 const randomNumber = (min, max) => {
     return Math.floor(Math.random() * (max - min) + min);
 };
 
 const flyingDuck = () => {
-
-  let element = document.getElementById("animateduck");
-
-  const directions = ["right", "left", "right-top", "left-top"];
-  const randomDirection =
-    directions[Math.floor(Math.random() * directions.length)];
-
-  element.classList.toggle("animateduck-" + randomDirection);
-
-  tID = setInterval(() => {
-    if (element) {
-      element.style.backgroundPosition = `-${position}px 0px`;
-    }
-
-    if (position < 210) {
-      position = position + 70;
-    } else {
-      position = 70;
-    }
-  }, interval);
-
-  element.addEventListener("animationend", function handleAnimationEnd() {
-    const newRandomDirection =
-      directions[Math.floor(Math.random() * directions.length)];
-    element.classList.toggle("duck-" + randomDirection);
-    element.classList.toggle("duck-" + newRandomDirection);
-    element.removeEventListener("animationend", handleAnimationEnd);
-    element.addEventListener("animationend", handleAnimationEnd); 
-},)
-
 };
 
-
-
-
-const createDuck = () => {
-  flappingDuck();
- // flyingDuck();
-};
-
-createDuck();
-
+flappingDuck();
